@@ -6,12 +6,12 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "pivotal-tracker-console"
     gem.summary = %Q{A console application to Pivotal Tracker}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.description = %Q{A simple console application to interact with Pivotal Tracker}
     gem.email = "leandrodoze@gmail.com"
     gem.homepage = "http://github.com/leandrosilva/pivotal-tracker-console"
     gem.authors = ["Leandro Silva"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.add_dependency %q<thor>, ">= 0.14.0"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-describe "PivotalTrackerConsole" do
-  it "fails" do
-    fail "hey buddy, you should probably rename this file and start specing for real"
+describe "The Pivotal Tracker Console" do
+  context "when used by someone" do
+    it "should be work fine"
   end
 end
