@@ -44,12 +44,11 @@ module PivotalTracker
   	# task: project
 
     desc "project [ID]", "Show the project's details"
-    method_option :details, :type => :boolean, :required => false, :aliases => "-d"
 
     def project(id)
       begin
         project = Project.find(id)
-        display_project_info project, :with_details => options.details?
+        display_project_info project, :with_details => true
       rescue RestClient::ResourceNotFound
         display_project_not_found id
       end
