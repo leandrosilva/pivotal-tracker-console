@@ -36,8 +36,7 @@ module PivotalTracker
     desc "projects", "List all projects"
 
     def projects
-      display_text "All projects"
-      skip_one_line
+      display_text "All projects", :new_line
       
       Project.all.each do |project|
         display_project_title project
@@ -49,6 +48,8 @@ module PivotalTracker
     desc "project [ID]", "Show the project's details and its stories"
 
     def project(id)
+      display_text "Details about project", :new_line
+
       begin
         project = Project.find(id)
         display_project_info project

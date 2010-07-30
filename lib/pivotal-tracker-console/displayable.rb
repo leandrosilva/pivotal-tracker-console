@@ -9,8 +9,10 @@ module PivotalTracker
         display YELLOW, "\n:: Pivotal Tracker Console ::\n"
       end
       
-      def display_text(text)
+      def display_text(text, new_line = :no)
         display text
+        
+        puts "" if new_line == :new_line
       end
       
       def display_error(message)
@@ -40,11 +42,11 @@ module PivotalTracker
 
     module Project
       def display_project_title(project)
-        puts "Project: #{project.id} - #{project.name}"
+        puts "#{project.id} - #{project.name}"
       end
 
       def display_project_info(project)
-        display_project_title
+        display_project_title project
         
         puts %Q{
   - Week start day:   #{project.week_start_day}
@@ -60,7 +62,7 @@ module PivotalTracker
     - Features:  #{project.stories.all(:story_type => ["feature"]).count}
     - Chores:    #{project.stories.all(:story_type => ["chore"]).count}
     - Bugs:      #{project.stories.all(:story_type => ["bug"]).count}
-          }
+}
       end
       
       def display_project_not_found(id)
