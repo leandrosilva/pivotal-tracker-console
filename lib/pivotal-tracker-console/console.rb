@@ -75,5 +75,29 @@ module PivotalTracker
         display_project_not_found project_id
       end
     end
+  	
+  	# task: story
+
+    desc "story [ID]", "Show the story's details"
+    method_option :project, :type => :numeric, :required => true, :aliases => "-p"
+
+    def story(id)
+      project_id = options.project
+      
+      begin
+        project = Project.find(project_id)
+        display_project_info project, :with_details => false
+
+        story = project.stories.find(id.to_i)
+        
+        if story
+          display_story_info story
+        else
+          display_error "Story #{id} not found in the project #{project_id}", true
+        end
+      rescue RestClient::ResourceNotFound
+        display_project_not_found id
+      end
+    end
   end
 end
