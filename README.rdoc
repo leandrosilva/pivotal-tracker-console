@@ -6,7 +6,7 @@ It's just a little console application to Pivotal Tracker.
 
 Install the pivotal-tracker-console gem:
 
-  sudo gem install pivotal-tracker-console
+  gem install pivotal-tracker-console
   
   tracker setup -t [PIVOTAL_TRACKER_API_TOKEN]   # Setup the token to authentication on Pivotal Tracker
 
