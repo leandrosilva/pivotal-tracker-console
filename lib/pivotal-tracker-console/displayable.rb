@@ -40,16 +40,19 @@ module PivotalTracker
 
         if options[:with_details]
           puts %Q{
-    - Week start day:   #{project.week_start_day}
-    - Point scale:      #{project.point_scale}
-    - Velocity scheme:  #{project.velocity_scheme}
-    - Iteration lenght: #{project.iteration_length}
-    - Initial velocity: #{project.initial_velocity}
-    - Current velocity: #{project.current_velocity}
-    - Last activity at: #{project.last_activity_at}
-    - Feature stories:  #{project.stories.all(:story_type => ["feature"]).count}
-    - Chore stories:    #{project.stories.all(:story_type => ["chore"]).count}
-    - Bug stories:      #{project.stories.all(:story_type => ["bug"]).count}
+  - Week start day:   #{project.week_start_day}
+  - Point scale:      #{project.point_scale}
+  - Velocity scheme:  #{project.velocity_scheme}
+  - Iteration lenght: #{project.iteration_length}
+  - Initial velocity: #{project.initial_velocity}
+  - Current velocity: #{project.current_velocity}
+  - Last activity at: #{project.last_activity_at}
+  
+  Stories count:
+  
+    - Features:  #{project.stories.all(:story_type => ["feature"]).count}
+    - Chores:    #{project.stories.all(:story_type => ["chore"]).count}
+    - Bugs:      #{project.stories.all(:story_type => ["bug"]).count}
           }
         end
       end
@@ -61,9 +64,11 @@ module PivotalTracker
     
     module Story
       def display_story_info(story, options = {:with_details => true})
-        puts %Q{    Story: #{story.id}
-      #{story.name}
-        }
+        puts %Q{
+  - Story: #{story.id}
+           
+    "#{story.name}"
+}
       end
     end
   end
