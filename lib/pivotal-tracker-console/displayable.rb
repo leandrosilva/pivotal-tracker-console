@@ -47,7 +47,9 @@ module PivotalTracker
     - Initial velocity: #{project.initial_velocity}
     - Current velocity: #{project.current_velocity}
     - Last activity at: #{project.last_activity_at}
-    - Stories count:    #{project.stories.all.count}
+    - Feature stories:  #{project.stories.all(:story_type => ["feature"]).count}
+    - Chore stories:    #{project.stories.all(:story_type => ["chore"]).count}
+    - Bug stories:      #{project.stories.all(:story_type => ["bug"]).count}
           }
         end
       end
