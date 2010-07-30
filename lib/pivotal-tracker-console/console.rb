@@ -28,17 +28,19 @@ module PivotalTracker
   	def setup
   	  Setup::API::Authentication.token = options[:token]
   	  
-  	  display_message "Token was setup."
+  	  display_text "Token was setup."
   	end
   	
   	# task: projects
 
     desc "projects", "List all projects"
-    method_option :details, :type => :boolean, :required => false, :aliases => "-d"
 
     def projects
+      display_text "All projects"
+      skip_one_line
+      
       Project.all.each do |project|
-        display_project_info project, :with_details => options.details?
+        display_project_title project
       end
     end
   	
@@ -66,7 +68,8 @@ module PivotalTracker
       
       begin
         project = Project.find(project_id)
-        display_project_info project, :with_details => false
+        display_project_info project
+        skip_one_line
 
         project.stories.all(:story_type => options.type).each do |story|
           display_story_info story, :with_details => false
@@ -86,14 +89,15 @@ module PivotalTracker
       
       begin
         project = Project.find(project_id)
-        display_project_info project, :with_details => false
+        display_project_info project
 
         story = project.stories.find(id.to_i)
         
         if story
           display_story_info story
         else
-          display_error "Story #{id} not found in the project #{project_id}", true
+          skip_one_line
+          display_error "Story #{id} not found in the project #{project_id}"
         end
       rescue RestClient::ResourceNotFound
         display_project_not_found id

@@ -9,14 +9,16 @@ module PivotalTracker
         display YELLOW, "\n:: Pivotal Tracker Console ::\n"
       end
       
-      def display_message(message)
-        display message
+      def display_text(text)
+        display text
       end
       
-      def display_error(message, skip_one_line = false)
-        puts "" if skip_one_line
-        
+      def display_error(message)
         display RED, "# Error => #{message}"
+      end
+      
+      def skip_one_line
+        puts ""
       end
       
       private
@@ -37,11 +39,14 @@ module PivotalTracker
     end
 
     module Project
-      def display_project_info(project, options = {:with_details => true})
+      def display_project_title(project)
         puts "Project: #{project.id} - #{project.name}"
+      end
 
-        if options[:with_details]
-          puts %Q{
+      def display_project_info(project)
+        display_project_title
+        
+        puts %Q{
   - Week start day:   #{project.week_start_day}
   - Point scale:      #{project.point_scale}
   - Velocity scheme:  #{project.velocity_scheme}
@@ -56,7 +61,6 @@ module PivotalTracker
     - Chores:    #{project.stories.all(:story_type => ["chore"]).count}
     - Bugs:      #{project.stories.all(:story_type => ["bug"]).count}
           }
-        end
       end
       
       def display_project_not_found(id)
@@ -66,7 +70,10 @@ module PivotalTracker
     
     module Story
       def display_story_info(story, options = {:with_details => true})
-        puts %Q{
+        unless options[:with_details]
+          puts "  - #{story.story_type}: #{story.id} [#{story.current_state}]"
+        else
+          puts %Q{
   - Story: #{story.id} [#{story.current_state}]
            
     "#{story.name}"
@@ -82,6 +89,7 @@ module PivotalTracker
     
       #{story.description}
 }
+        end
       end
       
       def display_story_not_found(id)
@@ -90,10 +98,3 @@ module PivotalTracker
     end
   end
 end
-
-# #<PivotalTracker::Story:0x7a5ce4 @id=3673737, @url="http://www.pivotaltracker.com/story/show/3673737",
-#                                 @created_at=#<DateTime: 2010-05-26T12:38:34+00:00 (106070818757/43200,0/1,2299161)>, @accepted_at=nil,
-#                                 @name="Hospedagem IDC n\xC3\xA3o s\xC3\xA3o removidas",
-#                                 @description="Clientes IDC hoje pedem o cancelamento de sua HP inclusa, o provisioning fica em deletado por\xC3\xA9m n\xC3\xA3o \xC3\xA9 removido do servidor e com isso o cadastro do servi\xC3\xA7o n\xC3\xA3o e limpo e o Dom\xC3\xADnio fica preso. Causando um futuro problema de contrata\xC3\xA7\xC3\xA3o de servi\xC3\xA7o. Conforme an\xC3\xA1lise j\xC3\xA1 feita pelo Gustavo Santana a programa\xC3\xA7\xC3\xA3o est\xC3\xA1 incorreta, pois chama apenas servi\xC3\xA7os \"HOSTING\" mas IDC o servi\xC3\xA7o \xC3\xA9 \"HP_INCLUSA....\"",
-#                                 @story_type="bug", @estimate=-1, @current_state="unscheduled", @requested_by="Anderson V Silva", @owned_by=nil,
-#                                 @labels="central do cliente", @jira_id=nil, @jira_url=nil, @other_id=nil, @project_id=31234>
