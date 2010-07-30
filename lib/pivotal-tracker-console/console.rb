@@ -8,7 +8,7 @@ module PivotalTracker
     #
     # Header
     #
-    print_header
+    display_header
     
     #
     # Authentication
@@ -27,7 +27,7 @@ module PivotalTracker
   	def setup
   	  Setup::API::Authentication.token = options[:token]
   	  
-  	  print_message "Token was setup."
+  	  display_message "Token was setup."
   	end
   	
   	# task: projects
@@ -37,7 +37,7 @@ module PivotalTracker
 
     def projects
       Project.all.each do |project|
-        print_project_info project, :with_details => options.details?
+        display_project_info project, :with_details => options.details?
       end
     end
   	
@@ -48,9 +48,9 @@ module PivotalTracker
     def project(id)
       begin
         project = Project.find(id)
-        print_project_info project
+        display_project_info project
       rescue RestClient::ResourceNotFound
-        print_project_not_found id
+        display_project_not_found id
       end
     end
   end

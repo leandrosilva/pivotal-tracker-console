@@ -5,21 +5,21 @@ module PivotalTracker
         base.send :extend, self
       end
 
-      def print_header
+      def display_header
         puts "\n:: Pivotal Tracker Console ::\n\n"
       end
       
-      def print_message(message)
+      def display_message(message)
         puts message
       end
       
-      def print_error(message)
-        print_message "# Error => #{message}"
+      def display_error(message)
+        display_message "# Error => #{message}"
       end
     end
 
     module Project
-      def print_project_info(project, options)
+      def display_project_info(project, options)
         puts "Project: #{project.id} - #{project.name}"
 
         if options[:with_details]
@@ -35,8 +35,8 @@ module PivotalTracker
         end
       end
       
-      def print_project_not_found(id)
-        print_error "Project #{id} not found."
+      def display_project_not_found(id)
+        display_error "Project #{id} not found."
       end
     end
   end
