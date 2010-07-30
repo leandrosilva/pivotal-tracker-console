@@ -1,16 +1,33 @@
 = pivotal-tracker-console
 
-Description goes here.
+It's just a little console application to Pivotal Tracker.
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+== Install and configuration
+
+Install the pivotal-tracker-console gem:
+
+  sudo gem install pivotal-tracker-console
+  
+  tracker setup -t [PIVOTAL_TRACKER_API_TOKEN]   # Setup the token to authentication on Pivotal Tracker
+
+Done. You can use right now.
+
+== Usage
+
+Some examples of usage maybe:
+
+  tracker help [TASK]                           # Describe available tasks or one specific task
+  tracker project [ID]                          # Show the project's details and its stories
+  tracker projects                              # List all projects
+  tracker setup -t, --token=TOKEN               # Setup the Pivotal Tracker API token
+  tracker stories [PROJECT_ID] -p, --project=N  # Show the project's stories
+  tracker story [ID] -p, --project=N            # Show the story's details
+
+== Help
+
+If you need some help, type:
+
+  tracker help
 
 == Copyright
 
