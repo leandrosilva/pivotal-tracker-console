@@ -88,11 +88,13 @@ module PivotalTracker
     method_option :project, :type => :numeric, :required => true, :aliases => "-p"
 
     def story(id)
+      display_text "Details about story", :new_line
+
       project_id = options.project
       
       begin
         project = Project.find(project_id)
-        display_project_info project
+        display_project_title project
 
         story = project.stories.find(id.to_i)
         
