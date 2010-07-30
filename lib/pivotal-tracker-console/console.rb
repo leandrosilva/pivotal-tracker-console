@@ -75,7 +75,7 @@ module PivotalTracker
         skip_one_line
 
         project.stories.all(:story_type => options.type).each do |story|
-          display_story_info story, :with_details => false
+          display_story_title story
         end
       rescue RestClient::ResourceNotFound
         display_project_not_found project_id
@@ -95,13 +95,13 @@ module PivotalTracker
       begin
         project = Project.find(project_id)
         display_project_title project
+        skip_one_line
 
         story = project.stories.find(id.to_i)
         
         if story
           display_story_info story
         else
-          skip_one_line
           display_error "Story #{id} not found in the project #{project_id}"
         end
       rescue RestClient::ResourceNotFound

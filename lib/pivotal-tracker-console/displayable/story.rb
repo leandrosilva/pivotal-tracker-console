@@ -1,16 +1,16 @@
 module PivotalTracker
   module Displayable
     module Story
-      def display_story_info(story, options = {:with_details => true})
-        unless options[:with_details]
-          puts "  - #{story.story_type}: #{story.id} [#{story.current_state}]"
-        else
-          puts %Q{
-  - Story: #{story.id} [#{story.current_state}]
-           
+      def display_story_title(story)
+        puts "  - #{story.story_type.capitalize}: #{story.id} [#{story.current_state}]"
+      end
+      
+      def display_story_info(story)
+        display_story_title(story)
+        
+        puts %Q{
     "#{story.name}"
     
-    - Type: #{story.story_type}
     - Created at: #{story.created_at}
     - Estimate: #{story.estimate}
     - Requested by: #{story.requested_by}
@@ -21,7 +21,6 @@ module PivotalTracker
     
       #{story.description}
 }
-        end
       end
       
       def display_story_not_found(id)
