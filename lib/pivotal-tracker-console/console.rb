@@ -65,11 +65,13 @@ module PivotalTracker
     method_option :type, :type => :array, :required => false, :default => ["feature", "chore", "bug"], :aliases => "-t"
 
     def stories
+      display_text "Project's stories", :new_line
+      
       project_id = options.project
       
       begin
         project = Project.find(project_id)
-        display_project_info project
+        display_project_title project
         skip_one_line
 
         project.stories.all(:story_type => options.type).each do |story|
