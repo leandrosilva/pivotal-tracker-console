@@ -4,6 +4,7 @@ module PivotalTracker
     include API::Authentication
     include Displayable::Main
     include Displayable::Project
+    include Displayable::Story
 
     #
     # Header
@@ -43,12 +44,17 @@ module PivotalTracker
   	
   	# task: project
 
-    desc "project [ID]", "Show the project's details"
+    desc "project [ID]", "Show the project's details and its stories"
+    method_option :stories, :type => :boolean, :required => false, :aliases => "-s"
 
     def project(id)
       begin
         project = Project.find(id)
-        display_project_info project, :with_details => true
+        display_project_info project
+        
+        project.stories.all.each do |story|
+          display_story_info story
+        end
       rescue RestClient::ResourceNotFound
         display_project_not_found id
       end
