@@ -31,7 +31,7 @@ module PivotalTracker
       BLUE    = "34m"
       MAGENTA = "35m"
 
-      def display(color_code = nil, text)
+      def display(color_code = nil, text = nil)
         if color_code
           puts "\e[#{color_code}#{text}\e[0m"
         else
