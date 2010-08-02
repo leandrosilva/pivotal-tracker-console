@@ -12,6 +12,7 @@ begin
     gem.authors = ["Leandro Silva"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.add_dependency %q<thor>, ">= 0.14.0"
+    gem.add_dependency %q<awesome_print>
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
