@@ -1,7 +1,6 @@
 require "rubygems"
 require "thor"
 require "pivotal-tracker"
-require "ap"
 require "yaml"
 
 require "pivotal-tracker-console/displayable"
