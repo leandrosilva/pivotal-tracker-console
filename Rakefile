@@ -13,6 +13,7 @@ begin
     gem.add_development_dependency "rspec", ">= 1.2.9"
     gem.add_dependency %q<thor>, ">= 0.14.0"
     gem.add_dependency %q<awesome_print>
+    gem.add_dependency %q<pivotal-tracker>, ">=0.2.0"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
