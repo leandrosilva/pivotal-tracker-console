@@ -6,7 +6,7 @@ module PivotalTracker
       end
 
       def display_header
-        display YELLOW, "\n:: Pivotal Tracker Console ::\n"
+        display "\n:: Pivotal Tracker Console ::\n", YELLOW
       end
       
       def display_text(text, new_line = :no)
@@ -16,7 +16,7 @@ module PivotalTracker
       end
       
       def display_error(message)
-        display RED, "# Error => #{message}"
+        display "# Error => #{message}", RED
       end
       
       def skip_one_line
@@ -31,7 +31,7 @@ module PivotalTracker
       BLUE    = "34m"
       MAGENTA = "35m"
 
-      def display(color_code = nil, text = nil)
+      def display(text, color_code = nil)
         if color_code
           puts "\e[#{color_code}#{text}\e[0m"
         else
