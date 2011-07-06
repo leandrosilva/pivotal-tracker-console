@@ -56,13 +56,19 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_runtime_dependency(%q<thor>, [">= 0.14.0"])
+      s.add_runtime_dependency(%q<pivotal-tracker>, [">= 0.3.1"])
+      s.add_runtime_dependency(%q<awesome_print>, [">= 0.4.0"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
       s.add_dependency(%q<thor>, [">= 0.14.0"])
+      s.add_dependency(%q<pivotal-tracker>, [">= 0.3.1"])
+      s.add_dependency(%q<awesome_print>, [">= 0.4.0"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
     s.add_dependency(%q<thor>, [">= 0.14.0"])
+    s.add_dependency(%q<pivotal-tracker>, [">= 0.3.1"])
+    s.add_dependency(%q<awesome_print>, [">= 0.4.0"])
   end
 end
 
